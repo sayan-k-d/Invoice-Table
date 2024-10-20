@@ -1,0 +1,21 @@
+@import "./components.scss";
+* {
+  font-family: "Poppins", sans-serif;
+}
+.btn-primary {
+  color: $primary !important;
+  &:hover {
+    color: $primaryDark;
+    border-color: $primaryDark;
+  }
+  &:focus-visible {
+    color: $primaryDark;
+    border-color: $primaryDark;
+  }
+  &:first-child {
+    &:active {
+      color: $primaryDark;
+      border-color: $primaryDark;
+    }
+  }
+}
