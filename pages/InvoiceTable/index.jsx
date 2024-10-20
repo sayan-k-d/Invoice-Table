@@ -1,6 +1,6 @@
+import ApiData from "@/components/ApiData";
 import TableActions from "@/components/TableActions";
 import {
-  Button,
   Paper,
   Table,
   TableBody,
@@ -9,20 +9,16 @@ import {
   TableHead,
   TableRow,
 } from "@mui/material";
-import React, { useState } from "react";
-import { Modal } from "react-bootstrap";
 
-const InvoiceTable = () => {
-  function createData(filename, date, status, excel) {
-    return { filename, date, status, excel };
-  }
-  const rows = [
-    createData("File1.pdf", new Date().toUTCString(), "Pending", "File1.xlsx"),
-    createData("File2.pdf", new Date().toUTCString(), "Pending", "File2.xlsx"),
-    createData("File3.pdf", new Date().toUTCString(), "Pending", "File3.xlsx"),
-    createData("File4.pdf", new Date().toUTCString(), "Pending", "File4.xlsx"),
-    createData("File5.pdf", new Date().toUTCString(), "Pending", "File5.xlsx"),
-  ];
+const InvoiceTable = ({ data, setData }) => {
+  const updateStatus = (pdf, newStatus) => {
+    setData((prevData) =>
+      prevData.map((row) =>
+        row.pdf === pdf ? { ...row, status: newStatus } : row
+      )
+    );
+  };
+
   return (
     <>
       <div className="container">
@@ -38,25 +34,40 @@ const InvoiceTable = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {rows.map((row) => (
+              {data.map((row) => (
                 <TableRow
-                  key={row.filename}
+                  key={row.pdf}
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                 >
                   <TableCell scope="row" align="center">
-                    <a href="/pdfs/sample.pdf" download>
-                      {row.filename}
+                    <a href={`download/pdf/${row.pdf}`} download>
+                      {row.displayPdf}
                     </a>
                   </TableCell>
                   <TableCell align="center">{row.date}</TableCell>
-                  <TableCell align="center">{row.status}</TableCell>
                   <TableCell align="center">
-                    <a href="/excels/sample.xls" download>
-                      {row.excel}
+                    <span
+                      className={`status ${
+                        row.status === "Approve"
+                          ? "approve"
+                          : row.status === "Reject"
+                          ? "reject"
+                          : ""
+                      }`}
+                    >
+                      {row.status}
+                    </span>
+                  </TableCell>
+                  <TableCell align="center">
+                    <a href={`download/csv/${row.csv}`} download>
+                      {row.displayCsv}
                     </a>
                   </TableCell>
                   <TableCell align="center">
-                    <TableActions fileName={row.filename} />
+                    <TableActions
+                      fileName={row.pdf}
+                      updateStatus={updateStatus}
+                    />
                   </TableCell>
                 </TableRow>
               ))}
@@ -67,5 +78,4 @@ const InvoiceTable = () => {
     </>
   );
 };
-
-export default InvoiceTable;
+export default ApiData(InvoiceTable, "files");

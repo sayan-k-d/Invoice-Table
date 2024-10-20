@@ -7,6 +7,17 @@
     color: $primary;
     text-decoration: none;
   }
+  .status {
+    padding: 10px 20px;
+    border-radius: 10px;
+    color: white;
+    &.approve {
+      background: #4caf50;
+    }
+    &.reject {
+      background: #f44336;
+    }
+  }
   .radio-group {
     .MuiFormControlLabel-label {
       font-size: 0.875rem;

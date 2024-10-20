@@ -6,11 +6,11 @@ import {
   Radio,
   RadioGroup,
 } from "@mui/material";
-import { green } from "@mui/material/colors";
+import { green, red } from "@mui/material/colors";
 
 import React from "react";
 
-const TableActions = ({ fileName }) => {
+const TableActions = ({ fileName, updateStatus }) => {
   const [value, setValue] = React.useState("");
 
   const handleRadioChange = (event) => {
@@ -21,9 +21,11 @@ const TableActions = ({ fileName }) => {
 
     if (value === "approve") {
       alert(`${fileName} Approved!`);
+      updateStatus(fileName, "Approve");
       setValue("");
     } else if (value === "reject") {
       alert(`${fileName} Rejected!`);
+      updateStatus(fileName, "Reject");
       setValue("");
     } else {
       alert("Please select an option.");
@@ -68,9 +70,9 @@ const TableActions = ({ fileName }) => {
             control={
               <Radio
                 sx={{
-                  color: "red",
+                  color: red[500],
                   "&.Mui-checked": {
-                    color: "red",
+                    color: red[500],
                   },
                 }}
               />
