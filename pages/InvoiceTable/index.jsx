@@ -9,8 +9,9 @@ import {
   TableHead,
   TableRow,
 } from "@mui/material";
+import { FadeLoader } from "react-spinners";
 
-const InvoiceTable = ({ data, setData }) => {
+const InvoiceTable = ({ data, setData, loading }) => {
   const updateStatus = (pdf, newStatus) => {
     setData((prevData) =>
       prevData.map((row) =>
@@ -23,56 +24,60 @@ const InvoiceTable = ({ data, setData }) => {
     <>
       <div className="container">
         <TableContainer component={Paper} className="table-container">
-          <Table sx={{ minWidth: 650 }} aria-label="simple table">
-            <TableHead>
-              <TableRow>
-                <TableCell align="center">Filename</TableCell>
-                <TableCell align="center">Date</TableCell>
-                <TableCell align="center">Status</TableCell>
-                <TableCell align="center">Excel</TableCell>
-                <TableCell align="center">Action</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {data.map((row) => (
-                <TableRow
-                  key={row.pdf}
-                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                >
-                  <TableCell scope="row" align="center">
-                    <a href={`download/pdf/${row.pdf}`} download>
-                      {row.displayPdf}
-                    </a>
-                  </TableCell>
-                  <TableCell align="center">{row.date}</TableCell>
-                  <TableCell align="center">
-                    <span
-                      className={`status ${
-                        row.status === "Approve"
-                          ? "approve"
-                          : row.status === "Reject"
-                          ? "reject"
-                          : ""
-                      }`}
-                    >
-                      {row.status}
-                    </span>
-                  </TableCell>
-                  <TableCell align="center">
-                    <a href={`download/csv/${row.csv}`} download>
-                      {row.displayCsv}
-                    </a>
-                  </TableCell>
-                  <TableCell align="center">
-                    <TableActions
-                      fileName={row.pdf}
-                      updateStatus={updateStatus}
-                    />
-                  </TableCell>
+          {loading ? (
+            <FadeLoader />
+          ) : (
+            <Table sx={{ minWidth: 650 }} aria-label="simple table">
+              <TableHead>
+                <TableRow>
+                  <TableCell align="center">Filename</TableCell>
+                  <TableCell align="center">Date</TableCell>
+                  <TableCell align="center">Status</TableCell>
+                  <TableCell align="center">Excel</TableCell>
+                  <TableCell align="center">Action</TableCell>
                 </TableRow>
-              ))}
-            </TableBody>
-          </Table>
+              </TableHead>
+              <TableBody>
+                {data.map((row) => (
+                  <TableRow
+                    key={row.pdf}
+                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                  >
+                    <TableCell scope="row" align="center">
+                      <a href={`download/pdf/${row.pdf}`} download>
+                        {row.displayPdf}
+                      </a>
+                    </TableCell>
+                    <TableCell align="center">{row.date}</TableCell>
+                    <TableCell align="center">
+                      <span
+                        className={`status ${
+                          row.status === "Approve"
+                            ? "approve"
+                            : row.status === "Reject"
+                            ? "reject"
+                            : ""
+                        }`}
+                      >
+                        {row.status}
+                      </span>
+                    </TableCell>
+                    <TableCell align="center">
+                      <a href={`download/csv/${row.csv}`} download>
+                        {row.displayCsv}
+                      </a>
+                    </TableCell>
+                    <TableCell align="center">
+                      <TableActions
+                        fileName={row.pdf}
+                        updateStatus={updateStatus}
+                      />
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          )}
         </TableContainer>
       </div>
     </>

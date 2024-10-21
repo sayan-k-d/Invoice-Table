@@ -1,5 +1,9 @@
 .table-container {
   margin: 40px 0;
+  min-height: 30vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   th {
     font-weight: 600;
   }

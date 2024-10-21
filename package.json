@@ -22,6 +22,7 @@
     "react": "^18",
     "react-bootstrap": "^2.8.0",
     "react-dom": "^18",
+    "react-spinners": "^0.14.1",
     "sass": "^1.67.0"
   },
   "devDependencies": {

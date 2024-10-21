@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-
 const ApiData = (WrappedComponent, apiUrl) => {
   return (props) => {
     const [data, setData] = useState([]);
@@ -30,11 +29,16 @@ const ApiData = (WrappedComponent, apiUrl) => {
           setLoading(false);
         });
     }, [apiUrl, setData, setLoading, setError]);
-
-    if (loading) return <div>Loading...</div>;
     if (error) return <div>Error: {error.message}</div>;
 
-    return <WrappedComponent data={data} setData={setData} {...props} />;
+    return (
+      <WrappedComponent
+        data={data}
+        loading={loading}
+        setData={setData}
+        {...props}
+      />
+    );
   };
 };
 
