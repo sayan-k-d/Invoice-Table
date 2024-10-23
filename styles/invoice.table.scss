@@ -15,10 +15,10 @@
     padding: 10px 20px;
     border-radius: 10px;
     color: white;
-    &.approve {
+    &.done {
       background: #4caf50;
     }
-    &.reject {
+    &.pending {
       background: #f44336;
     }
   }

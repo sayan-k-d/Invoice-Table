@@ -52,10 +52,10 @@ const InvoiceTable = ({ data, setData, loading }) => {
                     <TableCell align="center">
                       <span
                         className={`status ${
-                          row.status === "Approve"
-                            ? "approve"
-                            : row.status === "Reject"
-                            ? "reject"
+                          row.status === "Done"
+                            ? "done"
+                            : row.status === "Pending"
+                            ? "pending"
                             : ""
                         }`}
                       >

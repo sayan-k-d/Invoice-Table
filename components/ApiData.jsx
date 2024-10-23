@@ -19,6 +19,7 @@ const ApiData = (WrappedComponent, apiUrl) => {
               displayCsv: csvName + ".csv",
               pdf: item.pdf,
               csv: item.csv,
+              status: "Pending",
             };
           });
           setData(processedRows);
