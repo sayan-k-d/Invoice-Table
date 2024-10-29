@@ -22,10 +22,10 @@ const InvoiceTable = ({ data, setData, loading }) => {
 
   return (
     <>
-      <div className="container">
+      <div className="container table-area">
         <TableContainer component={Paper} className="table-container">
           {loading ? (
-            <FadeLoader />
+            <FadeLoader className="loading-spinner" />
           ) : (
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
               <TableHead>

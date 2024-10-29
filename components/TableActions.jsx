@@ -45,7 +45,11 @@ const TableActions = ({ fileName, updateStatus }) => {
   };
   return (
     <form onSubmit={handleSubmit}>
-      <FormControl sx={{ flexDirection: "row" }} variant="standard">
+      <FormControl
+        sx={{ flexDirection: "row" }}
+        variant="standard"
+        className="action-form"
+      >
         <RadioGroup
           row
           aria-labelledby="demo-error-radios"
