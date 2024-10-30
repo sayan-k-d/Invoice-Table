@@ -74,15 +74,14 @@ const UploadPDF = () => {
           </form>
 
           <Paper
-            className={`selected-file ${
-              fileInfo.name
-                ? "file-info"
-                : message.isError && message.msg
-                ? "error-message"
-                : !message.isError && message.msg != ""
-                ? "submit-message"
-                : ""
-            } ${zoomOut ? "zoomOut" : ""}`}
+            className={`selected-file ${fileInfo.name ? "file-info" : ""}
+                ${
+                  message.isError && message.msg
+                    ? "error-message"
+                    : !message.isError && message.msg != ""
+                    ? "submit-message"
+                    : ""
+                } ${zoomOut ? "zoomOut" : ""}`}
             elevation={3}
           >
             {message.msg ? (

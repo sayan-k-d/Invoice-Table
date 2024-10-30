@@ -32,7 +32,7 @@ const TableActions = ({ fileName, updateStatus }) => {
         .then((response) => {
           alert(`${fileName} ${status} and email sent!`);
           updateStatus(fileName, "Done");
-          setValue("");
+          // setValue("");
         })
         .catch((error) => {
           console.error("Error sending email:", error);

@@ -22,7 +22,7 @@ const InvoiceTable = ({ data, setData, loading }) => {
 
   return (
     <>
-      <div className="container table-area">
+      <div className="container-fluid table-area">
         <TableContainer component={Paper} className="table-container">
           {loading ? (
             <FadeLoader className="loading-spinner" />
