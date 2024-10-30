@@ -1,6 +1,5 @@
 import HomeContent from "@/components/HomeContent";
-import { AppBar, Box, Button, Toolbar } from "@mui/material";
-import { useRouter } from "next/router";
+import { Box } from "@mui/material";
 import React from "react";
 
 const Home = () => {

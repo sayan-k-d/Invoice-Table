@@ -1,4 +1,3 @@
-import { Dashboard } from "@mui/icons-material";
 import {
   Box,
   Button,
@@ -7,7 +6,6 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 
