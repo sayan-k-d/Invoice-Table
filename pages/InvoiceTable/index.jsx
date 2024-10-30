@@ -1,6 +1,8 @@
 import ApiData from "@/components/ApiData";
+import HomeContent from "@/components/HomeContent";
 import TableActions from "@/components/TableActions";
 import {
+  Box,
   Paper,
   Table,
   TableBody,
@@ -22,6 +24,9 @@ const InvoiceTable = ({ data, setData, loading }) => {
 
   return (
     <>
+      <Box>
+        <HomeContent />
+      </Box>
       <div className="container-fluid table-area">
         <TableContainer component={Paper} className="table-container">
           {loading ? (
@@ -30,10 +35,10 @@ const InvoiceTable = ({ data, setData, loading }) => {
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
               <TableHead>
                 <TableRow>
-                  <TableCell align="center">Filename</TableCell>
-                  <TableCell align="center">Date</TableCell>
-                  <TableCell align="center">Status</TableCell>
-                  <TableCell align="center">Excel</TableCell>
+                  <TableCell>Filename</TableCell>
+                  <TableCell>Date</TableCell>
+                  <TableCell>Status</TableCell>
+                  <TableCell>Excel</TableCell>
                   <TableCell align="center">Action</TableCell>
                 </TableRow>
               </TableHead>
@@ -43,13 +48,13 @@ const InvoiceTable = ({ data, setData, loading }) => {
                     key={row.pdf}
                     sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                   >
-                    <TableCell scope="row" align="center">
+                    <TableCell scope="row">
                       <a href={`download/pdf/${row.pdf}`} download>
                         {row.displayPdf}
                       </a>
                     </TableCell>
-                    <TableCell align="center">{row.date}</TableCell>
-                    <TableCell align="center">
+                    <TableCell>{row.date}</TableCell>
+                    <TableCell>
                       <span
                         className={`status ${
                           row.status === "Done"
@@ -62,12 +67,12 @@ const InvoiceTable = ({ data, setData, loading }) => {
                         {row.status}
                       </span>
                     </TableCell>
-                    <TableCell align="center">
+                    <TableCell>
                       <a href={`download/csv/${row.csv}`} download>
                         {row.displayCsv}
                       </a>
                     </TableCell>
-                    <TableCell align="center">
+                    <TableCell>
                       <TableActions
                         fileName={row.pdf}
                         updateStatus={updateStatus}

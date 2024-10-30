@@ -9,6 +9,7 @@ import {
 } from "@mui/material";
 import React from "react";
 import useUpload from "@/hooks/useUpload";
+import HomeContent from "@/components/HomeContent";
 const UploadPDF = () => {
   const {
     fileInfo,
@@ -27,6 +28,9 @@ const UploadPDF = () => {
   } = useUpload();
   return (
     <>
+      <Box>
+        <HomeContent />
+      </Box>
       <Box className="drag-and-drop-container container">
         <input
           type="file"
