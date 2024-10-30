@@ -28,7 +28,7 @@ const TableActions = ({ fileName, updateStatus }) => {
       };
 
       axios
-        .post("http://localhost:5000/send-email", emailBody)
+        .post("https://invoice-ap-is.vercel.app/send-email", emailBody)
         .then((response) => {
           alert(`${fileName} ${status} and email sent!`);
           updateStatus(fileName, "Done");

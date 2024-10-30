@@ -68,7 +68,7 @@ const useUpload = () => {
 
     if (fileInfo.name) {
       axios
-        .post("http://localhost:5000/upload", formData)
+        .post("https://invoice-ap-is.vercel.app/upload", formData)
         .then((response) => {
           setZoomOut(true);
           setIsDisabled(true);
