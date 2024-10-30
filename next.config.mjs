@@ -6,7 +6,7 @@ const nextConfig = {
     return [
       {
         source: "/:path*",
-        destination: `${process.env.BASE_URL}:path*`,
+        destination: `http://confiwebapp-hwg5bwafesaeaddt.canadacentral-01.azurewebsites.net/:path*`,
       },
     ];
   },
