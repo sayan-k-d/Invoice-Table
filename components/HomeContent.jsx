@@ -11,7 +11,11 @@ const HomeContent = () => {
   console.log(path);
 
   return (
-    <AppBar position="static" sx={{ background: "rgba(0, 0, 0, 0.87)" }}>
+    <AppBar
+      position="static"
+      sx={{ background: "rgba(0, 0, 0, 0.87)" }}
+      className="home-header"
+    >
       <Toolbar component={Box} gap={2}>
         <Button
           onClick={() => router.push("/UploadPDF")}
