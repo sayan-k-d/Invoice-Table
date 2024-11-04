@@ -14,20 +14,7 @@ const HomeContent = () => {
     router.push("/Login");
   };
   return (
-    <Box
-      className="nav-centent"
-      sx={{
-        background: "linear-gradient(to right, #E0E0FA,#E0F7FA, #B3E5FC)",
-        display: "flex",
-        borderRadius: "20px",
-        overflow: "hidden",
-        boxShadow: 5,
-        maxWidth: "900px",
-        width: "100%",
-        justifyContent: "space-evenly",
-        padding: "1rem",
-      }}
-    >
+    <Box className="nav-centent" sx={{ boxShadow: 5 }}>
       <Box>
         <Button
           onClick={() => router.push("/UploadPDF")}
@@ -46,9 +33,11 @@ const HomeContent = () => {
           Processed Documents
         </Button>
       </Box>
-      <Button onClick={handleLogout} variant="outlined" color="inherit">
-        Logout
-      </Button>
+      <Box>
+        <Button onClick={handleLogout} variant="outlined" color="inherit">
+          Logout
+        </Button>
+      </Box>
     </Box>
     // <AppBar
     //   position="static"

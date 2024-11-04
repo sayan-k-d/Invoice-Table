@@ -17,6 +17,7 @@ import {
   Divider,
 } from "@mui/material";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import Image from "next/image";
 
 const Login = () => {
   const [showPassword, setShowPassword] = React.useState(false);
@@ -42,40 +43,9 @@ const Login = () => {
     event.preventDefault();
   };
   return (
-    <Box
-      width="100%"
-      sx={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        height: "100vh",
-        background: "linear-gradient(to right, #E0E0FA,#E0F7FA, #B3E5FC)",
-      }}
-    >
-      <Box
-        sx={{
-          display: "flex",
-          borderRadius: "20px",
-          overflow: "hidden",
-          boxShadow: 5,
-          maxWidth: "900px",
-          width: "100%",
-          // height: "500px",
-          padding: "1rem",
-          bgcolor: "white",
-        }}
-      >
-        <form
-          onSubmit={handleLogin}
-          style={{
-            width: "50%",
-            padding: "32px",
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            bgcolor: "white",
-          }}
-        >
+    <Box className="login-base">
+      <Box className="login-content">
+        <form className="login-form" onSubmit={handleLogin}>
           <Typography variant="h5" fontWeight="bold" gutterBottom>
             Welcome Back!
           </Typography>
@@ -208,24 +178,7 @@ const Login = () => {
           </Typography>
         </form>
 
-        <Box
-          borderRadius="20px 20px 20px 50px"
-          sx={{
-            width: "50%",
-            bgcolor: "#1c1b1f",
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "flex-start",
-            alignItems: "center",
-            color: "white",
-            position: "relative",
-            p: 2,
-            backgroundPosition: "center",
-            backgroundSize: "cover",
-            backgroundRepeat: "no-repeat",
-            backgroundImage: `url(${"/images/avatar.png"})`,
-          }}
-        >
+        <Box className="form-image">
           <Typography
             variant="h5"
             fontWeight="bold"

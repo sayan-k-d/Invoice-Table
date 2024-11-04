@@ -18,6 +18,11 @@
     }
     td {
       text-wrap: nowrap;
+      @media (max-width: 768px) {
+        &:not(:nth-child(2)) {
+          text-wrap: wrap;
+        }
+      }
       a {
         color: $primary;
         text-decoration: none;
