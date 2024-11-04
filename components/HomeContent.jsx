@@ -9,14 +9,26 @@ const HomeContent = () => {
     setPath(router.pathname);
   }, []);
   console.log(path);
-
+  const handleLogout = () => {
+    localStorage.removeItem("loginStatus");
+    router.push("/Login");
+  };
   return (
-    <AppBar
-      position="static"
-      sx={{ background: "rgba(0, 0, 0, 0.87)" }}
-      className="home-header"
+    <Box
+      className="nav-centent"
+      sx={{
+        background: "linear-gradient(to right, #E0E0FA,#E0F7FA, #B3E5FC)",
+        display: "flex",
+        borderRadius: "20px",
+        overflow: "hidden",
+        boxShadow: 5,
+        maxWidth: "900px",
+        width: "100%",
+        justifyContent: "space-evenly",
+        padding: "1rem",
+      }}
     >
-      <Toolbar component={Box} gap={2}>
+      <Box>
         <Button
           onClick={() => router.push("/UploadPDF")}
           variant="outlined"
@@ -33,8 +45,35 @@ const HomeContent = () => {
         >
           Processed Documents
         </Button>
-      </Toolbar>
-    </AppBar>
+      </Box>
+      <Button onClick={handleLogout} variant="outlined" color="inherit">
+        Logout
+      </Button>
+    </Box>
+    // <AppBar
+    //   position="static"
+    //   sx={{ background: "linear-gradient(to right, #E0E0FA,#E0F7FA, #B3E5FC)" }}
+    //   className="home-header"
+    // >
+    //   <Toolbar component={Box} gap={2}>
+    //     <Button
+    //       onClick={() => router.push("/UploadPDF")}
+    //       variant="outlined"
+    //       color="inherit"
+    //       className={`${path === "/UploadPDF" ? "active" : ""}`}
+    //     >
+    //       Upload Documents
+    //     </Button>
+    //     <Button
+    //       onClick={() => router.push("/InvoiceTable")}
+    //       variant="outlined"
+    //       color="inherit"
+    //       className={`${path === "/InvoiceTable" ? "active" : ""}`}
+    //     >
+    //       Processed Documents
+    //     </Button>
+    //   </Toolbar>
+    // </AppBar>
   );
 };
 

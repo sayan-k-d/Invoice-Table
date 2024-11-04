@@ -1,10 +1,18 @@
+::-webkit-scrollbar {
+  width: 100% !important;
+  height: 10px !important;
+  background-color: rgba(0, 0, 0, 0.5) !important;
+}
 .table-area {
   .table-container {
+    box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.5);
+    overflow: auto;
     margin: 40px 0;
     min-height: 15vh;
     .loading-spinner {
       margin: 1rem auto;
     }
+
     th {
       font-weight: 600;
     }

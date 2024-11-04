@@ -1,8 +1,15 @@
-.home-header {
+.nav-centent {
+  button {
+    color: black;
+    letter-spacing: 0.1em;
+    transition: all 0.5s ease-in-out;
+    margin-right: 16px;
+  }
   button.active,
   button.active:hover {
-    background-color: rgba(197, 197, 197, 0.911);
+    // background-color: rgba(197, 197, 197, 0.911);
+    background: linear-gradient(to right, #babaf5, #baf5f5, #b9e5fb);
     color: black;
-    font-weight: bold;
+    letter-spacing: 0.2em;
   }
 }
