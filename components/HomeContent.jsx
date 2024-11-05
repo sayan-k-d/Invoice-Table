@@ -18,7 +18,7 @@ const HomeContent = () => {
       <Box>
         <Button
           onClick={() => router.push("/UploadPDF")}
-          variant="outlined"
+          variant="contained"
           color="inherit"
           className={`${path === "/UploadPDF" ? "active" : ""}`}
         >
@@ -26,7 +26,7 @@ const HomeContent = () => {
         </Button>
         <Button
           onClick={() => router.push("/InvoiceTable")}
-          variant="outlined"
+          variant="contained"
           color="inherit"
           className={`${path === "/InvoiceTable" ? "active" : ""}`}
         >
@@ -34,7 +34,7 @@ const HomeContent = () => {
         </Button>
       </Box>
       <Box>
-        <Button onClick={handleLogout} variant="outlined" color="inherit">
+        <Button onClick={handleLogout} variant="contained" color="inherit">
           Logout
         </Button>
       </Box>

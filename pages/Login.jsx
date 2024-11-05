@@ -52,7 +52,6 @@ const Login = () => {
           <Typography variant="body1" color="textSecondary" mb={3}>
             Please enter log in details below
           </Typography>
-
           <TextField
             label="Email"
             variant="outlined"
@@ -64,7 +63,6 @@ const Login = () => {
             sx={{ mb: 2 }}
             onFocus={(e) => setError("")}
           />
-
           <TextField
             label="Password"
             type={showPassword ? "text" : "password"}
@@ -130,9 +128,7 @@ const Login = () => {
           >
             Sign in
           </Button>
-
-          {/* Divider with "or continue" text */}
-          <Box sx={{ display: "flex", alignItems: "center", my: 2 }}>
+          {/* <Box sx={{ display: "flex", alignItems: "center", my: 2 }}>
             <Divider sx={{ flex: 1 }} />
             <Typography variant="body2" sx={{ mx: 2, color: "gray" }}>
               or continue
@@ -141,7 +137,7 @@ const Login = () => {
           </Box>
 
           {/* Google Login Button */}
-          <Button
+          {/* <Button
             variant="outlined"
             startIcon={
               <img
@@ -164,9 +160,10 @@ const Login = () => {
             }}
           >
             Log in with Google
-          </Button>
+          </Button>{" "}
+          */}
 
-          <Typography variant="body2" align="center" mt={3}>
+          <Typography variant="body2" align="center" mt={2}>
             Don’t have an account?{" "}
             <Typography
               component="span"
@@ -187,13 +184,13 @@ const Login = () => {
           >
             Manage your Invoices Anywhere
           </Typography>
-          <Typography
+          {/* <Typography
             variant="body2"
             textAlign="center"
             sx={{ color: "darkgray" }}
           >
             you can Manage your Invoices on the go with Us on the web
-          </Typography>
+          </Typography> */}
         </Box>
       </Box>
     </Box>
