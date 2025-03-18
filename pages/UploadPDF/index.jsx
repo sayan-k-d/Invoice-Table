@@ -22,7 +22,7 @@ const UploadPDF = () => {
       router.push("/Login");
       return;
     }
-  }, []);
+  }, [router]);
 
   const {
     fileInfo,
@@ -45,7 +45,9 @@ const UploadPDF = () => {
     setPageNumber,
     jsonData,
     isPaper,
-    setIsPaper,
+    isUploaded,
+    handleReset,
+    insights,
   } = useUpload();
 
   return (
@@ -77,7 +79,7 @@ const UploadPDF = () => {
               <FileUploadOutlined className="upload-icon" />
               Please upload your Invoice by dragging and dropping the file here.
             </Typography>
-            {fileInfo.name ? (
+            {fileInfo.name && !isUploaded ? (
               <Button
                 type="submit"
                 variant="outlined"
@@ -96,6 +98,27 @@ const UploadPDF = () => {
                   />
                 ) : (
                   "Upload"
+                )}
+              </Button>
+            ) : !fileInfo.name && isUploaded ? (
+              <Button
+                variant="outlined"
+                className="browse-button"
+                disabled={isDisabled ? true : false}
+                onClick={handleReset}
+              >
+                {isDisabled ? (
+                  <Hourglass
+                    visible={true}
+                    height="25"
+                    width="25"
+                    ariaLabel="hourglass-loading"
+                    wrapperStyle={{}}
+                    wrapperClass=""
+                    colors={["#306cce", "#72a1ed"]}
+                  />
+                ) : (
+                  "Reset"
                 )}
               </Button>
             ) : (
@@ -157,7 +180,11 @@ const UploadPDF = () => {
               isPaper={isPaper}
             />
 
-            <InvoiceData jsonData={jsonData} isPaper={isPaper} />
+            <InvoiceData
+              jsonData={jsonData}
+              isPaper={isPaper}
+              insights={insights}
+            />
           </div>
         </div>
       </Box>

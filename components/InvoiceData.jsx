@@ -1,7 +1,7 @@
-import { Box, Typography } from "@mui/material";
+import { Box, List, ListItem, ListItemText, Typography } from "@mui/material";
 import React from "react";
 
-const InvoiceData = ({ jsonData, isPaper }) => {
+const InvoiceData = ({ jsonData, isPaper, insights }) => {
   const renderValue = (value) => {
     if (Array.isArray(value)) {
       return (
@@ -62,9 +62,31 @@ const InvoiceData = ({ jsonData, isPaper }) => {
           )}
         </div>
         <Box className="api-text-container" maxHeight="200px">
-          <Box className="empty-state">
-            <Typography>API to get more Insights</Typography>
-          </Box>
+          <h2 class="mb-3" style={{ fontSize: "1.3rem" }}>
+            Insights
+          </h2>
+          {insights.length > 0 ? (
+            <Box
+              height="100%"
+              display="flex"
+              justifyContent="center"
+              alignItems="center"
+            >
+              <List>
+                {insights.map((insight, index) => (
+                  <ListItem key={index} sx={{ paddingTop: "0px" }}>
+                    <ListItemText className="insight-text">
+                      {insight}
+                    </ListItemText>
+                  </ListItem>
+                ))}
+              </List>
+            </Box>
+          ) : (
+            <Box className="empty-state">
+              <Typography>API to get more Insights</Typography>
+            </Box>
+          )}
         </Box>
       </Box>
     </div>

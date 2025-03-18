@@ -12,6 +12,8 @@ const useUpload = () => {
   const [pageNumber, setPageNumber] = useState(1);
   const [jsonData, setJsonData] = useState(null);
   const [isPaper, setIsPaper] = useState(false);
+  const [isUploaded, setIsUploaded] = useState(false);
+  const [insights, setInsights] = useState([]);
   const fileInputRef = useRef(null);
 
   const resetStates = () => {
@@ -21,6 +23,19 @@ const useUpload = () => {
       setIsDisabled(false);
       fileInputRef.current.value = null;
     }, 300);
+  };
+
+  const handleReset = () => {
+    setZoomOut(true);
+    setIsDisabled(true);
+    setMessage({ msg: "", isError: false });
+    setSelectedFile(null);
+    setPageNumber(1);
+    setNumPages(null);
+    setJsonData(null);
+    setIsPaper(false);
+    setInsights([]);
+    resetStates();
   };
   const handleFileChange = (event) => {
     const file = event.target.files[0];
@@ -89,6 +104,17 @@ const useUpload = () => {
           "https://openaiservices-dfamawfaeacmhhax.canadacentral-01.azurewebsites.net/upload",
           formData
         );
+
+        const insightsData = await axios.post(
+          "https://openaiservices-dfamawfaeacmhhax.canadacentral-01.azurewebsites.net/getinsights",
+          formData
+        );
+
+        insightsData.data
+          ? setInsights(
+              insightsData.data.split("\n").filter((item) => item.trim() !== "")
+            )
+          : setInsights([]);
         // console.log(response);
 
         setJsonData(response.data);
@@ -98,7 +124,12 @@ const useUpload = () => {
             msg: `${fileInfo.name} Uploaded Successfully!`,
             isError: false,
           });
+          setIsUploaded(true);
           resetStates();
+          setTimeout(() => {
+            setMessage({ msg: "", isError: false });
+            setIsPaper(false);
+          }, 3000);
         }
         // .then((response) => {
         // })
@@ -138,8 +169,12 @@ const useUpload = () => {
     onDocumentLoadSuccess,
     setPageNumber,
     jsonData,
-    setIsPaper,
     isPaper,
+    setIsPaper,
+    isUploaded,
+    setIsUploaded,
+    handleReset,
+    insights,
   };
 };
 
