@@ -7,6 +7,11 @@ const useUpload = () => {
   const [isDragging, setIsDragging] = useState(false);
   const [isDisabled, setIsDisabled] = useState(false);
   const [message, setMessage] = useState({ msg: "", isError: false });
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [numPages, setNumPages] = useState(null);
+  const [pageNumber, setPageNumber] = useState(1);
+  const [jsonData, setJsonData] = useState(null);
+  const [isPaper, setIsPaper] = useState(false);
   const fileInputRef = useRef(null);
 
   const resetStates = () => {
@@ -21,6 +26,9 @@ const useUpload = () => {
     const file = event.target.files[0];
 
     if (file) {
+      setSelectedFile(file);
+      setPageNumber(1);
+      setIsPaper(true);
       const sizeInKB = (file.size / 1024).toFixed(2);
       setFileInfo({ name: file.name, size: `${sizeInKB} KB` });
       setMessage({ msg: "", isError: false });
@@ -42,6 +50,8 @@ const useUpload = () => {
 
     const file = event.dataTransfer.files[0];
     if (file) {
+      setSelectedFile(file);
+      setIsPaper(true);
       const dataTransfer = new DataTransfer();
       dataTransfer.items.add(file);
       fileInputRef.current.files = dataTransfer.files;
@@ -58,35 +68,56 @@ const useUpload = () => {
     setZoomOut(true);
     setIsDisabled(true);
     setMessage({ msg: "", isError: false });
+    setSelectedFile(null);
+    setPageNumber(1);
+    setNumPages(null);
+    setJsonData(null);
+    setIsPaper(false);
     resetStates();
   };
-  const handleUploadClick = (event) => {
+  const handleUploadClick = async (event) => {
     event.preventDefault();
     // Perform upload logic here
-    const formData = new FormData();
-    formData.append("file", fileInputRef.current.files[0]);
+    try {
+      const formData = new FormData();
+      formData.append("file", fileInputRef.current.files?.[0]);
 
-    if (fileInfo.name) {
-      axios
-        .post("https://invoice-ap-is.vercel.app/upload", formData)
-        .then((response) => {
+      if (fileInfo.name) {
+        setIsDisabled(true);
+        setIsPaper(true);
+        const response = await axios.post(
+          "https://openaiservices-dfamawfaeacmhhax.canadacentral-01.azurewebsites.net/upload",
+          formData
+        );
+        // console.log(response);
+
+        setJsonData(response.data);
+        if (response.data) {
           setZoomOut(true);
-          setIsDisabled(true);
           setMessage({
             msg: `${fileInfo.name} Uploaded Successfully!`,
             isError: false,
           });
           resetStates();
-        })
-        .catch((error) => {
-          console.error("Error Uploading File:", error);
-          setMessage({ msg: "Failed to Upload File.", isError: true });
-        });
-    } else {
-      setMessage({ msg: "Please select an File to Upload.", isError: true });
+        }
+        // .then((response) => {
+        // })
+        // .catch((error) => {
+        //   console.error("Error Uploading File:", error);
+        //   setMessage({ msg: "Failed to Upload File.", isError: true });
+        // });
+      } else {
+        setMessage({ msg: "Please select an File to Upload.", isError: true });
+      }
+    } catch (error) {
+      setMessage({ msg: "Failed to Upload File.", isError: true });
+      setIsDisabled(false);
     }
   };
 
+  const onDocumentLoadSuccess = ({ numPages }) => {
+    setNumPages(numPages);
+  };
   return {
     fileInfo,
     zoomOut,
@@ -101,6 +132,14 @@ const useUpload = () => {
     handleUploadClick,
     fileInputRef,
     message,
+    selectedFile,
+    pageNumber,
+    numPages,
+    onDocumentLoadSuccess,
+    setPageNumber,
+    jsonData,
+    setIsPaper,
+    isPaper,
   };
 };
 

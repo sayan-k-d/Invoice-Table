@@ -2,11 +2,12 @@
 import { createProxyMiddleware } from "http-proxy-middleware";
 const nextConfig = {
   reactStrictMode: true,
+  devIndicators: false,
   async rewrites() {
     return [
       {
         source: "/:path*",
-        destination: `http://confiwebapp-hwg5bwafesaeaddt.canadacentral-01.azurewebsites.net/:path*`,
+        destination: `https://openaiservices-dfamawfaeacmhhax.canadacentral-01.azurewebsites.net/:path*`,
       },
     ];
   },
@@ -22,7 +23,7 @@ const nextConfig = {
           },
           {
             key: "Access-Control-Allow-Methods",
-            value: "GET,HEAD,OPTIONS",
+            value: "GET,POST,HEAD,OPTIONS",
           },
           {
             key: "Access-Control-Allow-Headers",

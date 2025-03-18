@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { Box } from "@mui/material";
+import HomeContent from "./HomeContent";
 
 const ApiData = (WrappedComponent, apiUrl) => {
   const WithApiData = (props) => {
@@ -34,7 +36,14 @@ const ApiData = (WrappedComponent, apiUrl) => {
     }, []);
 
     if (error)
-      return <div className="display-error">Error: {error.message}</div>;
+      return (
+        <Box display="flex" minHeight="100vh">
+          <HomeContent />
+          <Box width="100%">
+            <div className="display-error">Error: {error.message}</div>
+          </Box>
+        </Box>
+      );
 
     return (
       <WrappedComponent

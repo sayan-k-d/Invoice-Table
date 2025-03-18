@@ -33,15 +33,14 @@ const InvoiceTable = ({ data, setData, loading }) => {
   };
 
   return (
-    <>
-      <Box display="flex" justifyContent="center">
-        <HomeContent />
-      </Box>
+    <Box display="flex" minHeight="100vh">
+      <HomeContent />
       <Box
         sx={{
           mt: 2,
           p: 2,
         }}
+        width="100%"
       >
         <div className="container-fluid table-area">
           <TableContainer component={Paper} className="table-container">
@@ -102,7 +101,7 @@ const InvoiceTable = ({ data, setData, loading }) => {
           </TableContainer>
         </div>
       </Box>
-    </>
+    </Box>
   );
 };
 export default ApiData(InvoiceTable, "files");
