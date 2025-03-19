@@ -48,6 +48,7 @@ const UploadPDF = () => {
     isUploaded,
     handleReset,
     insights,
+    isFormDisabled,
   } = useUpload();
 
   return (
@@ -68,9 +69,9 @@ const UploadPDF = () => {
 
           <form
             className={`drop-area ${isDragging ? "dragging" : ""}`}
-            onDragOver={handleDragOver}
-            onDragLeave={handleDragLeave}
-            onDrop={handleDrop}
+            onDragOver={!isFormDisabled ? handleDragOver : null}
+            onDragLeave={!isFormDisabled ? handleDragLeave : null}
+            onDrop={!isFormDisabled ? handleDrop : null}
             encType="multipart/form-data"
             onSubmit={handleUploadClick}
             method="POST"

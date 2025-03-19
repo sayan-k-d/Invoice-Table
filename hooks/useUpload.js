@@ -13,6 +13,7 @@ const useUpload = () => {
   const [jsonData, setJsonData] = useState(null);
   const [isPaper, setIsPaper] = useState(false);
   const [isUploaded, setIsUploaded] = useState(false);
+  const [isFormDisabled, setIsFormDisabled] = useState(false);
   const [insights, setInsights] = useState([]);
   const fileInputRef = useRef(null);
 
@@ -35,6 +36,8 @@ const useUpload = () => {
     setJsonData(null);
     setIsPaper(false);
     setInsights([]);
+    setIsFormDisabled(false);
+    setIsUploaded(false);
     resetStates();
   };
   const handleFileChange = (event) => {
@@ -100,6 +103,7 @@ const useUpload = () => {
       if (fileInfo.name) {
         setIsDisabled(true);
         setIsPaper(true);
+        setIsFormDisabled(true);
         const response = await axios.post(
           "https://openaiservices-dfamawfaeacmhhax.canadacentral-01.azurewebsites.net/upload",
           formData
@@ -125,6 +129,7 @@ const useUpload = () => {
             isError: false,
           });
           setIsUploaded(true);
+
           resetStates();
           setTimeout(() => {
             setMessage({ msg: "", isError: false });
@@ -175,6 +180,8 @@ const useUpload = () => {
     setIsUploaded,
     handleReset,
     insights,
+    isFormDisabled,
+    setIsFormDisabled,
   };
 };
 

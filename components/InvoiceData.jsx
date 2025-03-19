@@ -1,4 +1,4 @@
-import { Box, List, ListItem, ListItemText, Typography } from "@mui/material";
+import { Box, Chip, Typography } from "@mui/material";
 import React from "react";
 
 const InvoiceData = ({ jsonData, isPaper, insights }) => {
@@ -29,6 +29,7 @@ const InvoiceData = ({ jsonData, isPaper, insights }) => {
     }
     return String(value);
   };
+
   return (
     <div className={`col-md-6 ${!isPaper ? "mh-600" : "mh-550"}`}>
       <Box display="flex" flexDirection="column" gap={2} height="100%">
@@ -62,25 +63,38 @@ const InvoiceData = ({ jsonData, isPaper, insights }) => {
           )}
         </div>
         <Box className="api-text-container" maxHeight="200px">
-          <h2 class="mb-3" style={{ fontSize: "1.3rem" }}>
+          <h2 className="mb-3" style={{ fontSize: "1.3rem" }}>
             Insights
           </h2>
           {insights.length > 0 ? (
             <Box
-              height="100%"
               display="flex"
-              justifyContent="center"
-              alignItems="center"
+              flexWrap="wrap"
+              gap={1}
+              sx={{
+                "& .MuiChip-root": {
+                  backgroundColor: "#c7f9cc",
+                  color: "#22577a",
+                  padding: "0.5rem",
+                  height: "50px",
+                  "&:hover": {
+                    backgroundColor: "#80ed99",
+                  },
+                },
+              }}
             >
-              <List>
-                {insights.map((insight, index) => (
-                  <ListItem key={index} sx={{ paddingTop: "0px" }}>
-                    <ListItemText className="insight-text">
-                      {insight}
-                    </ListItemText>
-                  </ListItem>
-                ))}
-              </List>
+              {insights.map((insight, index) => (
+                <Chip
+                  key={index}
+                  label={insight}
+                  size="medium"
+                  sx={{
+                    borderRadius: "16px",
+                    fontWeight: 500,
+                    fontSize: "0.875rem",
+                  }}
+                />
+              ))}
             </Box>
           ) : (
             <Box className="empty-state">

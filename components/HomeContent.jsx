@@ -41,7 +41,7 @@ const HomeContent = () => {
           <Upload size={20} />
           <span>Upload Document</span>
         </button>
-        <button
+        {/* <button
           className={`nav-item ${path === "/InvoiceTable" ? "active" : ""} ${
             !isSidebarOpen ? "justify-content-center" : ""
           }`}
@@ -49,7 +49,7 @@ const HomeContent = () => {
         >
           <FileText size={20} />
           <span>Processed Document</span>
-        </button>
+        </button> */}
         <button
           className={`nav-item logout ${
             !isSidebarOpen ? "justify-content-center" : ""
