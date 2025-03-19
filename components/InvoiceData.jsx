@@ -30,6 +30,28 @@ const InvoiceData = ({ jsonData, isPaper, insights }) => {
     return String(value);
   };
 
+  const getChipColor = (index) => {
+    if (index === insights.length - 1) {
+      // Last insight (Bill value check)
+      const isTrue = insights[index].toLowerCase().includes("true");
+      return {
+        backgroundColor: isTrue ? "#c7f9cc" : "#ffebee",
+        color: isTrue ? "#22577a" : "#c62828",
+        "&:hover": {
+          backgroundColor: isTrue ? "#80ed99" : "#ffcdd2",
+        },
+      };
+    }
+    // For other insights, use default green color
+    return {
+      backgroundColor: "#c7f9cc",
+      color: "#22577a",
+      "&:hover": {
+        backgroundColor: "#80ed99",
+      },
+    };
+  };
+
   return (
     <div className={`col-md-6 ${!isPaper ? "mh-600" : "mh-550"}`}>
       <Box display="flex" flexDirection="column" gap={2} height="100%">
@@ -73,13 +95,8 @@ const InvoiceData = ({ jsonData, isPaper, insights }) => {
               gap={1}
               sx={{
                 "& .MuiChip-root": {
-                  backgroundColor: "#c7f9cc",
-                  color: "#22577a",
                   padding: "0.5rem",
                   height: "50px",
-                  "&:hover": {
-                    backgroundColor: "#80ed99",
-                  },
                 },
               }}
             >
@@ -92,6 +109,7 @@ const InvoiceData = ({ jsonData, isPaper, insights }) => {
                     borderRadius: "16px",
                     fontWeight: 500,
                     fontSize: "0.875rem",
+                    ...getChipColor(index),
                   }}
                 />
               ))}
