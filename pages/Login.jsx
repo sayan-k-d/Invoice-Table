@@ -46,6 +46,15 @@ const Login = () => {
     <Box className="login-base">
       <Box className="login-content">
         <form className="login-form" onSubmit={handleLogin}>
+          <Box sx={{ mb: 3 }}>
+            <Image
+              className="logo"
+              src="/images/logo.png" // update this path to your logo file
+              alt="Company Logo"
+              width={160}
+              height={60}
+            />
+          </Box>
           <Typography variant="h5" fontWeight="bold" gutterBottom>
             Welcome Back!
           </Typography>
@@ -114,8 +123,9 @@ const Login = () => {
             color="primary"
             fullWidth
             type="submit"
+            className="login-button"
             sx={{
-              bgcolor: "black",
+              // bgcolor: "black",
               color: "white",
               py: 1.5,
               fontSize: "1rem",

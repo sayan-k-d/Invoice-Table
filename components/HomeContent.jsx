@@ -2,7 +2,7 @@ import { AppBar, Box, Button, Toolbar } from "@mui/material";
 import { Upload, FileText, LogOut, Menu as MenuIcon } from "lucide-react";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
-
+// const avatarSvg = "/images/avatar2.svg";
 const HomeContent = () => {
   const router = useRouter();
   // const [activeTab, setActiveTab] = useState("upload");
